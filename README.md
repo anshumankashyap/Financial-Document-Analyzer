@@ -1,38 +1,23 @@
-# Financial Document Analyzer - Debug Assignment
+## Bug Report
 
-## Project Overview
-A comprehensive financial document analysis system that processes corporate reports, financial statements, and investment documents using AI-powered analysis agents.
+| # | File | Bug | Type |
+|---|------|-----|------|
+| 1 | `agents.py` | Wrong import: `crewai.agents` → `crewai` | Import Error |
+| 2 | `agents.py` | `llm = llm` — self-reference undefined variable | **Critical** |
+| 3 | `agents.py` | Agent goal instructs hallucination of advice | Design |
+| 4 | `agents.py` | All backstories instruct unethical behavior | Design |
+| 5 | `agents.py` | Typo: `tool=` → `tools=` | **Critical** |
+| 6 | `agents.py` | `max_iter=1, max_rpm=1` makes agents non-functional | Logic |
+| 7 | `agents.py` | All agents ignore their distinct roles | Design |
+| 8 | `tools.py` | `from crewai_tools import tools` → `crewai.tools import tool` | Import Error |
+| 9 | `tools.py` | Undefined class `Pdf()` → `PyPDFLoader()` | **Critical** |
+| 10 | `tools.py` | `read_data_tool` is `async`, missing `@tool` decorator | Logic |
+| 11 | `tools.py` | `InvestmentTool`/`RiskTool` are `async`, missing `@staticmethod` | Logic |
+| 12 | `task.py` | All task descriptions instruct agents to fabricate data | Design |
+| 13 | `task.py` | `expected_output` demands fake URLs and dangerous advice | Design |
+| 14 | `task.py` | `verification` task uses `financial_analyst` instead of `verifier` | **Critical** |
+| 15 | `task.py` | investment/risk tasks use wrong specialist agents | Logic |
+| 16 | `main.py` | Route function name shadows imported crewAI Task | **Critical** |
+| 17 | `main.py` | `query==""` SyntaxError + `reload=True` in production | Logic |
 
-## Getting Started
-
-### Install Required Libraries
-```sh
-pip install -r requirement.txt
-```
-
-### Sample Document
-The system analyzes financial documents like Tesla's Q2 2025 financial update.
-
-**To add Tesla's financial document:**
-1. Download the Tesla Q2 2025 update from: https://www.tesla.com/sites/default/files/downloads/TSLA-Q2-2025-Update.pdf
-2. Save it as `data/sample.pdf` in the project directory
-3. Or upload any financial PDF through the API endpoint
-
-**Note:** Current `data/sample.pdf` is a placeholder - replace with actual Tesla financial document for proper testing.
-
-# You're All Not Set!
-🐛 **Debug Mode Activated!** The project has bugs waiting to be squashed - your mission is to fix them and bring it to life.
-
-## Debugging Instructions
-
-1. **Identify the Bug**: Carefully read the code in each file and understand the expected behavior. There is a bug in each line of code. So be careful.
-2. **Fix the Bug**: Implement the necessary changes to fix the bug.
-3. **Test the Fix**: Run the project and verify that the bug is resolved.
-4. **Repeat**: Continue this process until all bugs are fixed.
-
-## Expected Features
-- Upload financial documents (PDF format)
-- AI-powered financial analysis
-- Investment recommendations
-- Risk assessment
-- Market insights
+---
